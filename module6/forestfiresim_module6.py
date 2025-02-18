@@ -83,7 +83,6 @@ def main():
                 if (x, y) in nextForest:
                     # If we've already set nextForest[(x, y)] on a previous iteration, just do nothing here:
                     continue
-
                 if (forest[(x, y)] == EMPTY and random.random() <= GROW_CHANCE):
                     # Grow a tree in this empty space.
                     nextForest[(x, y)] = TREE
