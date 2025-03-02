@@ -1,24 +1,22 @@
 import json
-import os
+import os  # Import the os module for checking the working directory
 
 # Load the JSON file into a Python list
 def load_students(filename):
-    print("Checking for file:", filename)
-    if not os.path.exists(filename):
-        print(f"File not found: {filename}")
-        return []
+    print("Checking for file:", filename)  # Print the file name being checked
+    if not os.path.exists(filename):  # Check if the file exists
+        print(f"File not found: {filename}")  # Notify if the file is not found
+        return []  # Return an empty list if the file does not exist
     with open(filename, 'r') as file:
         try:
-            students_data = json.load(file)
-            print("Loaded students data:", students_data)  # Print loaded data for debugging
-            return students_data
+            return json.load(file)
         except json.JSONDecodeError:
             print("Error decoding JSON. Please check the file format.")
-            return []
+            return []  # Return an empty list if there is an error
 
 # Print each student value in the desired format
 def print_students(students):
-    if not students:
+    if not students:  # Check if students list is empty
         print("No students found.")
         return
     for student in students:
@@ -40,8 +38,9 @@ def save_students(filename, students):
 
 # Main program
 def main():
+    filename = 'students.json'  # Ensure this matches your actual JSON filename
+
     print("Current Working Directory:", os.getcwd())  # Print the current working directory
-    filename = 'students'  # Use the file name without an extension
 
     # Load existing students
     students = load_students(filename)
@@ -63,4 +62,4 @@ def main():
 
 # Run the program
 if __name__ == "__main__":
-    main() 
+    main()
